@@ -1,3 +1,49 @@
 body {
     background-color: papayawhip;
 }
+
+body {
+    color: #222;
+}
+
+nav {
+    background-color:#363B3F;
+}
+
+nav a {
+    color: white;
+}
+
+footer {
+    position:fixed;
+    left:0px;
+    bottom:0px;
+    height:200px;
+    width:100%;
+    background:#363B3F;
+    padding: 2%;
+    color: white;
+}
+
+footer a {
+    color:#9D9D9D;
+}
+
+form {
+    color:#222;
+}
+
+#loginForm {
+    margin-top: 6%;
+    padding: 1%;
+}
+h1 {
+    color:#9D9D9D;
+    margin-top: 7%;
+}
+
+.col-center {
+    float: none;
+    margin-right: auto;
+    margin-left: auto;
+}
