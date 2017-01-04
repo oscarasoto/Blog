@@ -9,22 +9,23 @@
     <link rel="stylesheet" href="../static/style.css"/>
 </head>
 <body>
-<h1>Your Guess</h1>
-<p th:text="${userGuess}"/>
-<h1>Dice number</h1>
-<p th:text="${diceResult}" />
+<div class="container">
+    <div>
+        <h1>Your Guess</h1>
+        <p th:text="${userGuess}"/>
+        <h1>Dice number</h1>
+        <p th:text="${diceResult}"/>
+    </div>
+    <div class="alert alert-danger" th:if="${userGuess} != ${diceResult}">
+        <h3>Try again !!</h3>
+        <a class="btn btn-primary" href="/roll-dice/" role="button">Roll Dice</a>
+    </div>
 
-<div class="alert alert-danger" th:if="${userGuess} != ${diceResult}">
-    <p>Try again !!</p>
-    <a class="btn btn-primary" href="/roll-dice/" role="button">Roll Dice</a>
+    <div class="alert alert-success" th:if="${userGuess} == ${diceResult}">
+        <h3>Great !!</h3>
+        <a class="btn btn-primary" href="/roll-dice/" role="button">Roll Dice</a>
+    </div>
 </div>
-
-<div class="alert alert-success" th:if="${userGuess} == ${diceResult}">
-    <h3>Great !!</h3>
-    <a class="btn btn-primary" href="/roll-dice/" role="button">Roll Dice</a>
-</div>
-
-
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>
 </html>
