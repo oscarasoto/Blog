@@ -12,6 +12,12 @@ import org.springframework.web.bind.annotation.PathVariable;
  */
 @Controller
 public class RollDiceController {
+
+    @GetMapping("/roll-dice")
+    public String rollDice() {
+        return "roll-dice";
+    }
+
     @GetMapping("/roll-dice/{number}")
     public String rollDice(@PathVariable int number, Model model) {
         Dice dice = new Dice();

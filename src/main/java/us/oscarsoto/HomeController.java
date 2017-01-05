@@ -15,9 +15,4 @@ public class HomeController {
         return "home";
     }
 
-    @GetMapping("/roll-dice")
-    public String rollDice() {
-        return "roll-dice";
-    }
-
 }
