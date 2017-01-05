@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 
-<head th:include="fragments/header :: header(${'Home Page'})"/>
+<head th:include="fragments/header :: header(${'Create Post'})"/>
 <body>
 <nav th:include="fragments/navbar :: navbar"/>
 
@@ -26,6 +26,7 @@
                         <textarea type="text" class="form-control" id="body" th:field="*{body}" rows="5"/>
                     </div>
                 </div>
+
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                         <button type="submit" class="btn btn-default">Send</button>

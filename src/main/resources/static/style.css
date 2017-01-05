@@ -1,9 +1,7 @@
 body {
-    background-color: papayawhip;
-}
-
-body {
-    color: #222;
+    font-family: Helvetica, sans-serif;
+    background: url("img/blog-background-simple-and-chic-natural-linen-3-column-b-o-ibackgroundz.com_.jpg") no-repeat center;
+    background-size: cover;
 }
 
 nav {
@@ -12,13 +10,14 @@ nav {
 
 nav a {
     color: white;
+    font-family: Helvetica, sans-serif;
 }
 
 footer {
-    position:fixed;
-    left:0px;
-    bottom:0px;
-    height:200px;
+    /*position:fixed;*/
+    /*left:0px;*/
+    /*bottom:0px;*/
+    height:170px;
     width:100%;
     background:#363B3F;
     padding: 2%;
@@ -27,6 +26,7 @@ footer {
 
 footer a {
     color:#9D9D9D;
+    font-family: Helvetica, sans-serif;
 }
 
 form {
@@ -46,4 +46,43 @@ h1 {
     float: none;
     margin-right: auto;
     margin-left: auto;
+}
+
+#blogHeader {
+    height: 200px;
+    background: url("img/background-city.jpg") no-repeat center;
+    background-size: cover;
+    opacity: .9;
+    color: white;
+    text-align: center;
+    font-family: Helvetica, sans-serif;
+}
+#postPanels {
+    margin-top: 10px;
+    font-family: Helvetica, sans-serif;
+    height: 100%;
+}
+#newPostButton {
+    font-family: Helvetica, sans-serif;
+    background-color: #2E444F;
+    color: white;
+    opacity: .9;
+}
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /*font-size: 18px;*/
+}
+#panelHead {
+    font-family: Helvetica, sans-serif;
+    background-color: #2E444F;
+    opacity: .7;
+    color: white;
+}
+#container {
+    align-content: center;
+    height: 100%;
+    margin-bottom: 10px;
 }

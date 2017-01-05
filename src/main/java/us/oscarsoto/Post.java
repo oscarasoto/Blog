@@ -11,6 +11,7 @@ public class Post {
     private String body;
 
 
+
     public long getId() {
         return id;
     }
