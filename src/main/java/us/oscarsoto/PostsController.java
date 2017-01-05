@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import java.util.List;
 
 /**
@@ -14,13 +13,15 @@ import java.util.List;
  *         There is no reasonable excuse for doing anything less than your best.
  *         - Martin, Robert C.
  */
+
 @Controller
 @RequestMapping("/posts")
 public class PostsController {
 
     @GetMapping
     public String index(Model m){
-        List<Post> post = DaoFactory.getPostsDao().retrieveAll();
+        List<Post> posts = DaoFactory.getPostsDao().retrieveAll();
+        m.addAttribute("posts", posts);
         return "posts/index";
     }
 

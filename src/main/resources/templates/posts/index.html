@@ -1,10 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
+<head th:include="fragments/header :: header(${'Home Page'})"/>
+<body>
+<nav th:include="fragments/navbar :: navbar"/>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <h1>Welcome to my Blog</h1>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table table-condensed">
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Body</th>
+            </tr>
+            <tr th:each="post : ${posts}">
+                <td th:text="${post.id}">7</td>
+                <td th:text="${post.title}">Learning Java Spring</td>
+                <td th:text="${post.body}">Form Model Binding</td>
+            </tr>
+        </table>
+    </div>
+    <div class="row">
+        <a class="btn btn-default" href="posts/create" role="button">New Post!</a>
+    </div>
+
+
+</div>
+
+<footer th:include="fragments/footer :: footer"/>
 </body>
 </html>

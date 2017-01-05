@@ -24,6 +24,5 @@ public class ListPosts implements Posts {
     public void save(Post post) {
         post.setId(posts.size()+1);
         posts.add(post);
-
     }
 }
