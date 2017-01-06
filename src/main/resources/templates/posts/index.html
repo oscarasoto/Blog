@@ -18,10 +18,8 @@
                     </div>
                     <div class="panel-body">
                         <p th:text="${post.body}"></p>
+                        <a class="btn btn-default" th:href="@{'/posts/'+${post.id}}" role="button">Show more..</a>
                     </div>
-                    <!--<div>
-                        <img th:text="${imgURL}" src="https://cdn.filestackcontent.com/a1vpnYN2ThqHc3x41ltp"/>
-                    </div>-->
                 </div>
             </div>
         </div>

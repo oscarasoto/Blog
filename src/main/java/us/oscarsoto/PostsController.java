@@ -26,8 +26,8 @@ public class PostsController {
     }
 
     @GetMapping("/create")
-    public  String showCreateForm(Model m) {
-        m.addAttribute("post", new Post());
+    public  String showCreateForm(Model model) {
+        model.addAttribute("post", new Post());
         return "posts/create";
     }
 
@@ -38,8 +38,10 @@ public class PostsController {
     }
 
     @GetMapping("/{id}")
-    public String findPostById(@PathVariable int id, Model m){
-        m.addAttribute("post", DaoFactory.getPostsDao().findPostById(id));
+    public String findPostById(@PathVariable int id, Model model){
+        Post post = DaoFactory.getPostsDao().findPostById(id);
+        System.out.println(post);
+        model.addAttribute("post", post);
         return "posts/show";
     }
 }
