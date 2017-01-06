@@ -13,7 +13,7 @@
     </div>
     <div class="row">
         <div class="col-xs-offset-2 col-xs-8">
-            <form class="form-horizontal" action="/posts/create" method="post" th:object="${post}">
+            <form class="form-horizontal" th:action="@{/posts/create}" method="post" th:object="${post}">
                 <div class="form-group">
                     <label for="title" class="col-xs-2">Title</label>
                     <div class="col-sm-8">
@@ -23,15 +23,15 @@
                 <div class="form-group">
                     <label for="body" class="col-xs-2">Body</label>
                     <div class="col-sm-8">
-                        <textarea type="text" class="form-control" id="body" th:field="*{body}" rows="5"/>
+                        <textarea class="form-control" id="body" th:field="*{body}" rows="5"/>
                     </div>
                 </div>
-                <div class="form-group">
+                <!--<div class="form-group">
                     <script type="text/javascript" src="//api.filestackapi.com/filestack.js"></script>
                     <label for="body" class="col-xs-2">Select an image</label>
                     <input type="filepicker" data-fp-apikey="A6QFo0HzXQGOOesQqtz0dz"
                            onchange="alert(event.fpfile.url)" th:field="*{imgURL}"/>
-                </div>
+                </div>-->
                 <div class="form-group">
                     <div class="col-xs-offset-2 col-xs-8">
                         <button type="submit" class="btn btn-default">Send</button>

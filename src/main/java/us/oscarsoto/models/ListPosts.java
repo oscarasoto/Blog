@@ -1,4 +1,4 @@
-package us.oscarsoto;
+package us.oscarsoto.models;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ public class ListPosts implements Posts {
     }
 
     @Override
-    public void save(Post post) {
+    public void insert(Post post) {
         post.setId(posts.size()+1);
         posts.add(post);
     }

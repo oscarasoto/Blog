@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import us.oscarsoto.models.DaoFactory;
+import us.oscarsoto.models.Post;
+
 import java.util.List;
 
 /**
@@ -33,7 +36,8 @@ public class PostsController {
 
     @PostMapping("/create")
     public String createNewPost(@ModelAttribute Post post){
-        DaoFactory.getPostsDao().save(post);
+        System.out.println("controller"+ post);
+        DaoFactory.getPostsDao().insert(post);
         return "redirect:/posts";
     }
 }

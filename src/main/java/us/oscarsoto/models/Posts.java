@@ -1,4 +1,6 @@
-package us.oscarsoto;
+package us.oscarsoto.models;
+
+import us.oscarsoto.models.Post;
 
 import java.util.List;
 
@@ -9,6 +11,8 @@ import java.util.List;
  */
 public interface Posts {
     List<Post> retrieveAll();
-    void save(Post post);
-
+    void insert(Post post);
+    Post findPostById(int id);
+    void updatePost(Post post);
+    boolean deletePost(Post post);
 }

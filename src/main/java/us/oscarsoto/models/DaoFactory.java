@@ -1,4 +1,7 @@
-package us.oscarsoto;
+package us.oscarsoto.models;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 /**
  * @author oscarsoto on 1/5/17.
@@ -6,11 +9,14 @@ package us.oscarsoto;
  *         - Martin, Robert C.
  */
 public class DaoFactory {
+    private static SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+    private static Session session = sessionFactory.openSession();
+
     private static Posts postsDao;
 
     public static Posts getPostsDao(){
         if (postsDao == null) {
-            postsDao = new ListPosts();
+            postsDao = new HibernatePostsDao(session);
         }
         return postsDao;
     }

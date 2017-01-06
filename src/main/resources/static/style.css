@@ -14,9 +14,9 @@ nav a {
 }
 
 footer {
-    /*position:fixed;*/
-    /*left:0px;*/
-    /*bottom:0px;*/
+    position:fixed;
+    left:0px;
+    bottom:0px;
     height:170px;
     width:100%;
     background:#363B3F;

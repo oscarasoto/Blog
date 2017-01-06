@@ -19,9 +19,9 @@
                     <div class="panel-body">
                         <p th:text="${post.body}"></p>
                     </div>
-                    <div>
+                    <!--<div>
                         <img th:text="${imgURL}" src="https://cdn.filestackcontent.com/a1vpnYN2ThqHc3x41ltp"/>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>
@@ -33,9 +33,10 @@
 
     </div>
 
+    <footer th:include="fragments/footer :: footer"/>
 
 </div>
 
-<footer th:include="fragments/footer :: footer"/>
+
 </body>
 </html>
