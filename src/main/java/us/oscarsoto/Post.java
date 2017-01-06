@@ -9,8 +9,15 @@ public class Post {
     private long id;
     private String title;
     private String body;
+    private String imgURL;
 
+    public String getImgURL() {
+        return imgURL;
+    }
 
+    public void setImgURL(String imgURL) {
+        this.imgURL = imgURL;
+    }
 
     public long getId() {
         return id;
