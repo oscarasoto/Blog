@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head th:include="fragments/header :: header(${'Blog Index'})"/>
+<body>
+<nav th:include="fragments/navbar :: navbar"/>
+<div class="col-xs-12" id="blogHeader">
+    <h1 class="center">Thoughts and Inspiration</h1>
+</div>
+<div class="container" id="container">
+
+    <div class="row">
+        <div class="col-xs-offset-2 col-xs-8" id="postPanels">
+            <div class="row" th:each="post : ${posts}">
+                <div class="panel panel-default">
+                    <div class="panel-heading" id="panelHead">
+                        <h3 class="panel-title" th:text="${post.title}">Title</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p th:text="${post.body}"></p>
+                    </div>
+                    <!--<div>
+                        <img th:text="${imgURL}" src="https://cdn.filestackcontent.com/a1vpnYN2ThqHc3x41ltp"/>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-offset-8 col-xs-2">
+            <a id="newPostButton" class="btn btn-default" href="posts/create" role="button">New Post!</a>
+        </div>
+
+    </div>
+
+    <footer th:include="fragments/footer :: footer"/>
+
+</div>
+
+
+</body>
+</html>

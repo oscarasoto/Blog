@@ -26,8 +26,28 @@ public class HibernatePostsDao implements Posts {
     @Override
     public void insert(Post post) {
         Transaction tx = session.beginTransaction();
-        System.out.println(post);
         session.save(post);
         tx.commit();
+    }
+
+    @Override
+    public Post findPostById(int id) {
+        Query query = session.createQuery("FROM Post WHERE id = :id");
+        query.setParameter("id", id);
+
+        @SuppressWarnings("unchecked")
+        Post post = (Post) query.getSingleResult();
+
+        return post;
+    }
+
+    @Override
+    public void updatePost(Post post) {
+
+    }
+
+    @Override
+    public boolean deletePost(Post post) {
+        return false;
     }
 }

@@ -25,4 +25,19 @@ public class ListPosts implements Posts {
         post.setId(posts.size()+1);
         posts.add(post);
     }
+
+    @Override
+    public Post findPostById(int id) {
+        return null;
+    }
+
+    @Override
+    public void updatePost(Post post) {
+
+    }
+
+    @Override
+    public boolean deletePost(Post post) {
+        return false;
+    }
 }

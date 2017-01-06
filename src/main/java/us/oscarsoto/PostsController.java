@@ -2,10 +2,7 @@ package us.oscarsoto;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import us.oscarsoto.models.DaoFactory;
 import us.oscarsoto.models.Post;
 
@@ -36,8 +33,13 @@ public class PostsController {
 
     @PostMapping("/create")
     public String createNewPost(@ModelAttribute Post post){
-        System.out.println("controller"+ post);
         DaoFactory.getPostsDao().insert(post);
         return "redirect:/posts";
+    }
+
+    @GetMapping("/{id}")
+    public String findPostById(@PathVariable int id, Model m){
+        m.addAttribute("post", DaoFactory.getPostsDao().findPostById(id));
+        return "posts/show";
     }
 }
