@@ -3,7 +3,7 @@
 
 <head th:include="fragments/header :: header(${'Blog Index'})"/>
 <body>
-<nav th:include="fragments/navbar :: navbar"/>
+    <nav th:replace="fragments/navbar :: navbar"/>
 <div class="col-xs-12" id="blogHeader">
     <h1 class="center">Thoughts and Inspiration</h1>
 </div>

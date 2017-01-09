@@ -53,10 +53,10 @@ public class PostsController {
 
     @PostMapping("/{id}/edit")
     public String editPostById(@PathVariable int id, @ModelAttribute Post editedPost){
-        Post existedPost = DaoFactory.getPostsDao().findPostById(id);
-        existedPost.setTitle(editedPost.getTitle());
-        existedPost.setBody(editedPost.getBody());
-        DaoFactory.getPostsDao().updatePost(existedPost);
+        Post existingPost = DaoFactory.getPostsDao().findPostById(id);
+        existingPost.setTitle(editedPost.getTitle());
+        existingPost.setBody(editedPost.getBody());
+        DaoFactory.getPostsDao().updatePost(existingPost);
         return "redirect:/posts/"+id;
     }
 
