@@ -43,7 +43,9 @@ public class HibernatePostsDao implements Posts {
 
     @Override
     public void updatePost(Post post) {
-
+        Transaction tx = session.beginTransaction();
+        session.update(post);
+        tx.commit();
     }
 
     @Override

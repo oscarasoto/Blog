@@ -68,7 +68,7 @@ public class Post {
 
     @Override
     public String toString(){
-        return this.title + " " + this.body;
+        return this.id + " " + this.title + " " + this.body;
     }
 
 

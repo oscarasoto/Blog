@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 
-<head th:include="fragments/header :: header(${'Create Post'})"/>
+<head th:include="fragments/header :: header(${'Edit Post'})"/>
 <body>
 <nav th:include="fragments/navbar :: navbar"/>
 
@@ -13,7 +13,8 @@
     </div>
     <div class="row">
         <div class="col-xs-offset-2 col-xs-8">
-            <form th:replace="fragments/create-form :: create-form(${'create'})"/>
+            <form th:replace="fragments/create-form :: create-form(${post.id}+'/edit')"/>
+
         </div>
     </div>
 

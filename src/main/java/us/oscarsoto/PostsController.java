@@ -40,8 +40,24 @@ public class PostsController {
     @GetMapping("/{id}")
     public String findPostById(@PathVariable int id, Model model){
         Post post = DaoFactory.getPostsDao().findPostById(id);
-        System.out.println(post);
         model.addAttribute("post", post);
         return "posts/show";
     }
+
+    @GetMapping("/{id}/edit")
+    public String showEditPostById(@PathVariable int id, Model model){
+        Post post = DaoFactory.getPostsDao().findPostById(id);
+        model.addAttribute("post", post);
+        return "posts/edit";
+    }
+
+    @PostMapping("/{id}/edit")
+    public String editPostById(@PathVariable int id, @ModelAttribute Post editedPost){
+        Post existedPost = DaoFactory.getPostsDao().findPostById(id);
+        existedPost.setTitle(editedPost.getTitle());
+        existedPost.setBody(editedPost.getBody());
+        DaoFactory.getPostsDao().updatePost(existedPost);
+        return "redirect:/posts/"+id;
+    }
+
 }
