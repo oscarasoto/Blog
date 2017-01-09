@@ -37,7 +37,7 @@ public class ListPosts implements Posts {
     }
 
     @Override
-    public boolean deletePost(Post post) {
-        return false;
+    public void deletePost(Post post) {
+
     }
 }

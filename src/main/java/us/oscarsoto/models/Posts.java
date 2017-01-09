@@ -14,5 +14,5 @@ public interface Posts {
     void insert(Post post);
     Post findPostById(int id);
     void updatePost(Post post);
-    boolean deletePost(Post post);
+    void deletePost(Post post);
 }

@@ -60,4 +60,11 @@ public class PostsController {
         return "redirect:/posts/"+id;
     }
 
+    @GetMapping("/{id}/delete")
+    public String deletePostById(@PathVariable int id){
+        Post existedPost = DaoFactory.getPostsDao().findPostById(id);
+        DaoFactory.getPostsDao().deletePost(existedPost);
+        return "redirect:/posts";
+    }
+
 }
