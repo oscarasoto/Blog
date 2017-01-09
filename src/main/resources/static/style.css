@@ -1,7 +1,18 @@
+html{
+    height: 100%;
+}
+
 body {
     font-family: Helvetica, sans-serif;
     background: url("img/blog-background-simple-and-chic-natural-linen-3-column-b-o-ibackgroundz.com_.jpg") repeat-y center;
     background-size: cover;
+    min-height: 100%;
+
+}
+#container {
+    align-content: center;
+    height: 100%;
+    margin-bottom: 180px;
 }
 
 nav {
@@ -14,9 +25,9 @@ nav a {
 }
 
 footer {
-   /* position:fixed;
+    position: fixed;
     left:0px;
-    bottom:0px;*/
+    bottom:0px;
     height:170px;
     width:100%;
     background:#363B3F;
@@ -80,9 +91,4 @@ h1 {
     background-color: #2E444F;
     opacity: .7;
     color: white;
-}
-#container {
-    align-content: center;
-    height: 100%;
-    margin-bottom: 10px;
 }
