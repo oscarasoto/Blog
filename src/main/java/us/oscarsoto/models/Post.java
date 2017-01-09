@@ -1,5 +1,7 @@
 package us.oscarsoto.models;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
 
 /**
@@ -16,9 +18,11 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotBlank(message = "Please enter a title")
     @Column(nullable = false)
     private String title;
 
+    @NotBlank(message = "Please enter your blog")
     @Column(nullable = false, length = 5000)
     private String body;
 

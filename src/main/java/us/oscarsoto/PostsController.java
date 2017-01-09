@@ -2,10 +2,12 @@ package us.oscarsoto;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import us.oscarsoto.models.DaoFactory;
 import us.oscarsoto.models.Post;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -32,7 +34,14 @@ public class PostsController {
     }
 
     @PostMapping("/create")
-    public String createNewPost(@ModelAttribute Post post){
+    public String createNewPost(@Valid Post post, Errors validation, Model model){
+
+        if(validation.hasErrors()){
+            model.addAttribute("errors", validation);
+            model.addAttribute("post", post);
+            return "posts/create";
+        }
+
         DaoFactory.getPostsDao().insert(post);
         return "redirect:/posts";
     }
@@ -52,7 +61,14 @@ public class PostsController {
     }
 
     @PostMapping("/{id}/edit")
-    public String editPostById(@PathVariable int id, @ModelAttribute Post editedPost){
+    public String editPostById(@PathVariable int id, @Valid Post editedPost, Errors validation, Model model){
+
+        if(validation.hasErrors()){
+            model.addAttribute("errors", validation);
+            model.addAttribute("post", editedPost);
+            return "posts/edit";
+        }
+
         Post existingPost = DaoFactory.getPostsDao().findPostById(id);
         existingPost.setTitle(editedPost.getTitle());
         existingPost.setBody(editedPost.getBody());

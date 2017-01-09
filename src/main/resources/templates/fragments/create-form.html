@@ -8,12 +8,14 @@
             <label for="title" class="col-xs-2">Title</label>
             <div class="col-sm-8">
                 <input class="form-control" id="title" th:field="*{title}" />
+                <p class="alert alert-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}" />
             </div>
         </div>
         <div class="form-group">
             <label for="body" class="col-xs-2">Body</label>
             <div class="col-sm-8">
                 <textarea class="form-control" id="body" th:field="*{body}" rows="5"/>
+                <p class="alert alert-danger" th:if="${#fields.hasErrors('body')}" th:errors="*{body}" />
             </div>
         </div>
 
