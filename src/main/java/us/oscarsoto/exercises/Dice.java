@@ -1,4 +1,4 @@
-package us.oscarsoto;
+package us.oscarsoto.exercises;
 
 /**
  * @author oscarsoto on 1/4/17.

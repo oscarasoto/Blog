@@ -1,4 +1,4 @@
-package us.oscarsoto.models;
+package us.oscarsoto.security;
 
 import javax.persistence.*;
 
@@ -32,6 +32,15 @@ public class User {
         this.email = email;
         this.password = password;
     }
+
+    public User(User user) {
+        id = user.id;
+        email = user.email;
+        username = user.username;
+        password = user.password;
+    }
+
+
 
     public Long getId() {
         return id;

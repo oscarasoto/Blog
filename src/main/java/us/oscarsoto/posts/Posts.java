@@ -1,9 +1,6 @@
-package us.oscarsoto.models;
+package us.oscarsoto.posts;
 
 import org.springframework.data.repository.CrudRepository;
-import us.oscarsoto.models.Post;
-
-import java.util.List;
 
 /**
  * @author oscarsoto on 1/5/17.

@@ -1,13 +1,11 @@
-package us.oscarsoto;
+package us.oscarsoto.posts;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-import us.oscarsoto.models.DaoFactory;
-import us.oscarsoto.models.Post;
-import us.oscarsoto.models.Posts;
+//import us.oscarsoto.oldModels.DaoFactory;
 
 import javax.validation.Valid;
 

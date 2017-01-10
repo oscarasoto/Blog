@@ -27,7 +27,7 @@
         <property name="hbm2ddl.auto">update</property>
 
         <!-- Add mapped classes here -->
-        <mapping class="us.oscarsoto.models.Post"/>
+        <mapping class="us.oscarsoto.posts.Post"/>
         <!-- ... -->
     </session-factory>
 </hibernate-configuration>

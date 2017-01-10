@@ -1,4 +1,4 @@
-package us.oscarsoto.models;
+package us.oscarsoto.posts;
 
 import org.hibernate.validator.constraints.NotBlank;
 
