@@ -1,5 +1,7 @@
 package us.oscarsoto.security;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
 
 /**
@@ -15,14 +17,19 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Please enter a username")
     @Column(nullable = false, unique = true)
     private String username;
 
+    @NotBlank(message = "Please enter a password")
+    @Column(nullable = false)
+    private String password;
+
+    @NotBlank(message = "Please enter an email")
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
-    private String password;
+
 
     public User(){}
 

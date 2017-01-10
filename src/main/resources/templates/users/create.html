@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 
-<head th:include="fragments/header :: header(${'Create Post'})"/>
+<head th:include="fragments/header :: header(${'Create User'})"/>
 <body>
 <nav th:replace="fragments/navbar :: navbar"/>
 
@@ -13,7 +13,7 @@
     </div>
     <div class="row">
         <div class="col-xs-offset-2 col-xs-8">
-            <form th:replace="fragments/create-post-form :: create-post-form(${'create'})"/>
+            <form th:replace="fragments/create-user-form :: create-user-form(${'create'})"/>
         </div>
     </div>
 

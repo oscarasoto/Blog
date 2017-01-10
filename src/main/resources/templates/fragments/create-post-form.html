@@ -3,7 +3,6 @@
 <body>
 
     <form th:fragment="create-form(action)" class="form-horizontal" th:action="@{'/posts/'+${action}}" method="post" th:object="${post}">
-        <!--<a class="btn btn-default" th:href="@{'/posts/'+${post.id}+'/edit'}" role="button">Edit</a>-->
         <div class="form-group">
             <label for="title" class="col-xs-2">Title</label>
             <div class="col-sm-8">
