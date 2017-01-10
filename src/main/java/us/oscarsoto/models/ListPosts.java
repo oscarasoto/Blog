@@ -22,12 +22,12 @@ public class ListPosts implements Posts {
 
     @Override
     public void insert(Post post) {
-        post.setId(posts.size()+1);
+        post.setId((long) (posts.size()+1));
         posts.add(post);
     }
 
     @Override
-    public Post findPostById(int id) {
+    public Post findPostById(Long id) {
         return null;
     }
 

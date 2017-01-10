@@ -1,14 +1,16 @@
 package us.oscarsoto;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import us.oscarsoto.models.DaoFactory;
 import us.oscarsoto.models.Post;
+import us.oscarsoto.models.Posts;
 
 import javax.validation.Valid;
-import java.util.List;
+
 
 /**
  * @author oscarsoto on 1/5/17.
@@ -20,10 +22,14 @@ import java.util.List;
 @RequestMapping("/posts")
 public class PostsController {
 
+    @Autowired
+    Posts postsDao;
+
     @GetMapping
     public String index(Model m){
-        List<Post> posts = DaoFactory.getPostsDao().retrieveAll();
-        m.addAttribute("posts", posts);
+//        List<Post> posts = DaoFactory.getPostsDao().retrieveAll();
+
+        m.addAttribute("posts", postsDao.findAll());
         return "posts/index";
     }
 
@@ -42,26 +48,27 @@ public class PostsController {
             return "posts/create";
         }
 
-        DaoFactory.getPostsDao().insert(post);
+//        DaoFactory.getPostsDao().insert(post);
+        postsDao.save(post);
         return "redirect:/posts";
     }
 
     @GetMapping("/{id}")
-    public String findPostById(@PathVariable int id, Model model){
-        Post post = DaoFactory.getPostsDao().findPostById(id);
-        model.addAttribute("post", post);
+    public String findPostById(@PathVariable Long id, Model model){
+//        Post post = DaoFactory.getPostsDao().findPostById(id);
+        model.addAttribute("post", postsDao.findOne(id));
         return "posts/show";
     }
 
     @GetMapping("/{id}/edit")
-    public String showEditPostById(@PathVariable int id, Model model){
-        Post post = DaoFactory.getPostsDao().findPostById(id);
-        model.addAttribute("post", post);
+    public String showEditPostById(@PathVariable Long id, Model model){
+//        Post post = DaoFactory.getPostsDao().findPostById(id);
+        model.addAttribute("post", postsDao.findOne(id));
         return "posts/edit";
     }
 
     @PostMapping("/{id}/edit")
-    public String editPostById(@PathVariable int id, @Valid Post editedPost, Errors validation, Model model){
+    public String editPostById(@PathVariable Long id, @Valid Post editedPost, Errors validation, Model model){
 
         if(validation.hasErrors()){
             model.addAttribute("errors", validation);
@@ -69,18 +76,24 @@ public class PostsController {
             return "posts/edit";
         }
 
-        Post existingPost = DaoFactory.getPostsDao().findPostById(id);
+//        Post existingPost = DaoFactory.getPostsDao().findPostById(id);
+        Post existingPost = postsDao.findOne(id);
         existingPost.setTitle(editedPost.getTitle());
         existingPost.setBody(editedPost.getBody());
-        DaoFactory.getPostsDao().updatePost(existingPost);
+//        DaoFactory.getPostsDao().updatePost(existingPost);
+        postsDao.save(existingPost);
         return "redirect:/posts/"+id;
     }
 
     @GetMapping("/{id}/delete")
-    public String deletePostById(@PathVariable int id){
-        Post existedPost = DaoFactory.getPostsDao().findPostById(id);
-        DaoFactory.getPostsDao().deletePost(existedPost);
+    public String deletePostById(@PathVariable Long id){
+//        Post existedPost = DaoFactory.getPostsDao().findPostById(id);
+        Post existedPost = postsDao.findOne(id);
+//        DaoFactory.getPostsDao().deletePost(existedPost);
+        postsDao.delete(existedPost);
         return "redirect:/posts";
     }
 
 }
+
+//Nest case number 02841849

@@ -16,7 +16,7 @@ public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @NotBlank(message = "Please enter a title")
     @Column(nullable = false)
@@ -26,7 +26,7 @@ public class Post {
     @Column(nullable = false, length = 5000)
     private String body;
 
-    public Post(int id, String title, String body){
+    public Post(Long id, String title, String body){
         this.id = id;
         this.title = title;
         this.body = body;
@@ -37,20 +37,11 @@ public class Post {
     }
 
 
-//    private String imgURL;
-//    public String getImgURL() {
-//        return imgURL;
-//    }
-//
-//    public void setImgURL(String imgURL) {
-//        this.imgURL = imgURL;
-//    }
-
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

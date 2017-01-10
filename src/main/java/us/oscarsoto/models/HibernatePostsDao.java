@@ -11,8 +11,8 @@ import java.util.List;
  *         There is no reasonable excuse for doing anything less than your best.
  *         - Martin, Robert C.
  */
-public class HibernatePostsDao implements Posts {
-    private Session session;
+//public class HibernatePostsDao implements Posts {
+    /*private Session session;
 
     public HibernatePostsDao (Session session){
         this.session = session;
@@ -53,5 +53,5 @@ public class HibernatePostsDao implements Posts {
         Transaction tx = session.beginTransaction();
         session.delete(post);
         tx.commit();
-    }
-}
+    }*/
+//}
