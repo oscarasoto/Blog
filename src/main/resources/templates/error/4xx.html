@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head th:include="fragments/header :: header(${error})"/>
+<body>
+    <nav th:replace="fragments/navbar :: navbar"/>
+
+    <div class="container">
+        <h1>Sorry for the inconvenience!!</h1>
+
+        <div class="col-xs-12 alert alert-danger">
+
+            <th:block th:switch="${error}">
+                <!--400-->
+                <div th:case="'Bad Request'">
+                    <h1>The server cannot or will not process the request due to an apparent client error</h1>
+                </div>
+                <!--401-->
+                <div th:case="'Unauthorized'">
+                    <h1>Authentication is required</h1>
+                </div>
+                <!--403-->
+                <div th:case="'Forbidden'">
+                    <h1>The user might be logged in but does not have the necessary permissions for the resource</h1>
+                </div>
+                <!--404-->
+                <div th:case="'Not Found'">
+                    <h1>The requested resource could not be found but may be available in the future!!</h1>
+                </div>
+            </th:block>
+
+
+        </div>
+
+    </div>
+
+    <footer th:include="fragments/footer :: footer"/>
+</body>
+</html>
