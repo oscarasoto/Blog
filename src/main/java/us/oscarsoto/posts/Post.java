@@ -1,9 +1,12 @@
 package us.oscarsoto.posts;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.validator.constraints.NotBlank;
 import us.oscarsoto.security.User;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * @author oscarsoto on 1/5/17.
@@ -19,8 +22,6 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-
     @ManyToOne
     private User user;
 
@@ -31,6 +32,16 @@ public class Post {
     @NotBlank(message = "Please enter your blog")
     @Column(nullable = false, length = 5000)
     private String body;
+
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "create_date")
+    private Date createDate;
+
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "modify_date")
+    private Date modifyDate;
 
     public Post(Long id, String title, String body){
         this.id = id;
@@ -74,6 +85,22 @@ public class Post {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getModifyDate() {
+        return modifyDate;
+    }
+
+    public void setModifyDate(Date modifyDate) {
+        this.modifyDate = modifyDate;
     }
 
     @Override
