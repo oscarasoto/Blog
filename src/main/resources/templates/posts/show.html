@@ -14,7 +14,8 @@
             <div class="row" th:object="${post}">
                 <div class="panel panel-default">
                     <div class="panel-heading" id="panelHead">
-                        <h3 class="panel-title" th:text="*{title}">Title</h3>
+                        <h3 class="panel-title" th:text="*{title}">Title </h3>
+                        <p>Posted by <span id="capitalize" th:text="${post.user.username}">Some user</span></p>
                     </div>
                     <div class="panel-body">
                         <p th:text="*{body}"></p>

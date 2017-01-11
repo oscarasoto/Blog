@@ -93,3 +93,6 @@ h1 {
     opacity: .7;
     color: white;
 }
+#capitalize {
+    text-transform: capitalize;
+}
