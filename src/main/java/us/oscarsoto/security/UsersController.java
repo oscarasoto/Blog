@@ -1,6 +1,7 @@
 package us.oscarsoto.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -25,6 +26,9 @@ public class UsersController {
     @Autowired
     Users usersDao;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @GetMapping("/create")
     public  String showCreateUserForm(Model model) {
         model.addAttribute("user", new User());
@@ -32,15 +36,21 @@ public class UsersController {
     }
 
     @PostMapping("/create")
-    public String createNewPost(@Valid User user, Errors validation, Model model){
+    public String createNewUser(@Valid User userFromForm, Errors validation, Model model){
 
         if(validation.hasErrors()){
             model.addAttribute("errors", validation);
-            model.addAttribute("user", user);
+            model.addAttribute("userFromForm", userFromForm);
             return "users/create";
         }
 
-        usersDao.save(user);
+        User newUser = new User();
+        newUser.setUsername(userFromForm.getUsername());
+        newUser.setEmail(userFromForm.getEmail());
+        newUser.setPassword(passwordEncoder.encode(userFromForm.getPassword()));
+
+        usersDao.save(newUser);
+
         return "redirect:/posts";
     }
 }

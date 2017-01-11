@@ -1,6 +1,7 @@
 package us.oscarsoto.posts;
 
 import org.hibernate.validator.constraints.NotBlank;
+import us.oscarsoto.security.User;
 
 import javax.persistence.*;
 
@@ -17,6 +18,11 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+
+
+    @ManyToOne
+    private User user;
 
     @NotBlank(message = "Please enter a title")
     @Column(nullable = false)
@@ -35,6 +41,15 @@ public class Post {
     public Post() {
 
     }
+
+    public void setUser(User user){
+        this.user = user;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
 
 
     public Long getId() {

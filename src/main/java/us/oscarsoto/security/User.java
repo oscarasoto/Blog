@@ -1,8 +1,10 @@
 package us.oscarsoto.security;
 
 import org.hibernate.validator.constraints.NotBlank;
+import us.oscarsoto.posts.Post;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author oscarsoto on 1/10/17.
@@ -17,6 +19,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @OneToMany(mappedBy = "user")
+    private List<Post> posts;
+
     @NotBlank(message = "Please enter a username")
     @Column(nullable = false, unique = true)
     private String username;
@@ -28,8 +33,6 @@ public class User {
     @NotBlank(message = "Please enter an email")
     @Column(nullable = false, unique = true)
     private String email;
-
-
 
     public User(){}
 

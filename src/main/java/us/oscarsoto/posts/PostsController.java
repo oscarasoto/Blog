@@ -5,7 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-//import us.oscarsoto.oldModels.DaoFactory;
+import us.oscarsoto.security.BaseController;
+
 
 import javax.validation.Valid;
 
@@ -18,7 +19,7 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/posts")
-public class PostsController {
+public class PostsController extends BaseController {
 
     @Autowired
     Posts postsDao;
@@ -47,6 +48,8 @@ public class PostsController {
         }
 
 //        DaoFactory.getPostsDao().insert(post);
+//        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        post.setUser(loggedInUser());
         postsDao.save(post);
         return "redirect:/posts";
     }
@@ -60,7 +63,7 @@ public class PostsController {
 
     @GetMapping("/{id}/edit")
     public String showEditPostById(@PathVariable Long id, Model model){
-//        Post post = DaoFactory.getPostsDao().findPostById(id);
+
         model.addAttribute("post", postsDao.findOne(id));
         return "posts/edit";
     }
@@ -74,20 +77,20 @@ public class PostsController {
             return "posts/edit";
         }
 
-//        Post existingPost = DaoFactory.getPostsDao().findPostById(id);
         Post existingPost = postsDao.findOne(id);
+        if (existingPost.getUser().getId() != loggedInUser().getId()) {
+            return "redirect:/posts";
+        }
         existingPost.setTitle(editedPost.getTitle());
         existingPost.setBody(editedPost.getBody());
-//        DaoFactory.getPostsDao().updatePost(existingPost);
         postsDao.save(existingPost);
         return "redirect:/posts/"+id;
     }
 
     @GetMapping("/{id}/delete")
     public String deletePostById(@PathVariable Long id){
-//        Post existedPost = DaoFactory.getPostsDao().findPostById(id);
         Post existedPost = postsDao.findOne(id);
-//        DaoFactory.getPostsDao().deletePost(existedPost);
+
         postsDao.delete(existedPost);
         return "redirect:/posts";
     }
