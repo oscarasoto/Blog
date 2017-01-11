@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import us.oscarsoto.security.BaseController;
+import us.oscarsoto.security.User;
+import us.oscarsoto.security.Users;
 
 
 import javax.validation.Valid;
@@ -26,7 +28,6 @@ public class PostsController extends BaseController {
 
     @GetMapping
     public String index(Model m){
-//        List<Post> posts = DaoFactory.getPostsDao().retrieveAll();
 
         m.addAttribute("posts", postsDao.findAll());
         return "posts/index";
@@ -47,17 +48,18 @@ public class PostsController extends BaseController {
             return "posts/create";
         }
 
-//        DaoFactory.getPostsDao().insert(post);
-//        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setUser(loggedInUser());
         postsDao.save(post);
         return "redirect:/posts";
     }
 
     @GetMapping("/{id}")
-    public String findPostById(@PathVariable Long id, Model model){
-//        Post post = DaoFactory.getPostsDao().findPostById(id);
-        model.addAttribute("post", postsDao.findOne(id));
+    public String showPostById(@PathVariable Long id, Model model){
+        Post existingPost = postsDao.findOne(id);
+        Long existingPostUserId = existingPost.getUser().getId();
+
+        model.addAttribute("post",  existingPost);
+        model.addAttribute("showEditControls", isLoggedIn() && existingPostUserId == loggedInUser().getId());
         return "posts/show";
     }
 
@@ -90,11 +92,9 @@ public class PostsController extends BaseController {
     @GetMapping("/{id}/delete")
     public String deletePostById(@PathVariable Long id){
         Post existedPost = postsDao.findOne(id);
-
         postsDao.delete(existedPost);
         return "redirect:/posts";
     }
 
 }
 
-//Nest case number 02841849
