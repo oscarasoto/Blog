@@ -1,16 +1,18 @@
 package us.oscarsoto.posts;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import us.oscarsoto.security.BaseController;
-import us.oscarsoto.security.User;
-import us.oscarsoto.security.Users;
-
 
 import javax.validation.Valid;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
 
 
 /**
@@ -23,12 +25,14 @@ import javax.validation.Valid;
 @RequestMapping("/posts")
 public class PostsController extends BaseController {
 
+    @Value("${file-upload-path}")
+    private String uploadPath;
+
     @Autowired
     Posts postsDao;
 
     @GetMapping
     public String index(Model m){
-
         m.addAttribute("posts", postsDao.findAll());
         return "posts/index";
     }
@@ -40,16 +44,30 @@ public class PostsController extends BaseController {
     }
 
     @PostMapping("/create")
-    public String createNewPost(@Valid Post post, Errors validation, Model model){
+    public String createNewPost(@Valid Post post, Errors validation, @RequestParam(name = "file") MultipartFile uploadedFile, Model model){
 
         if(validation.hasErrors()){
             model.addAttribute("errors", validation);
             model.addAttribute("post", post);
             return "posts/create";
         }
-
         post.setUser(loggedInUser());
         postsDao.save(post);
+        String filename = "post"+post.getId()+uploadedFile.getOriginalFilename();
+        String filepath = Paths.get(uploadPath, filename).toString();
+        File destinationFile = new File(filepath);
+
+        try {
+            uploadedFile.transferTo(destinationFile);
+            post.setFileName(filename);
+            model.addAttribute("message", "File successfully uploaded!");
+        } catch (IOException e) {
+            e.printStackTrace();
+            model.addAttribute("message", "Oops! Something went wrong! " + e);
+        }
+
+        postsDao.save(post);
+        System.out.println(post.getFileName());
         return "redirect:/posts";
     }
 

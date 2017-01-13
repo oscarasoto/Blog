@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <body>
 
-    <form th:fragment="create-post-form(action)" class="form-horizontal" th:action="@{'/posts/'+${action}}" method="post" th:object="${post}">
+    <form th:fragment="create-post-form(action)" class="form-horizontal" th:action="@{'/posts/'+${action}}" method="post" enctype="multipart/form-data" th:object="${post}">
         <div class="form-group">
             <label for="title" class="col-xs-2">Title</label>
             <div class="col-xs-8">
@@ -17,7 +17,12 @@
                 <p class="alert alert-danger" th:if="${#fields.hasErrors('body')}" th:errors="*{body}" />
             </div>
         </div>
-
+        <div class="form-group">
+            <label for="file" class="col-xs-2">Upload</label>
+            <div class="col-xs-8">
+                <input class="form-control" id="file" name="file" type="file" />
+            </div>
+        </div>
         <div class="form-group">
             <div class="col-xs-offset-2 col-xs-8">
                 <button type="submit" class="btn btn-default">Save</button>

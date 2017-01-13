@@ -33,6 +33,9 @@ public class Post {
     @Column(nullable = false, length = 5000)
     private String body;
 
+    @Column(name = "file_name")
+    private String fileName;
+
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "create_date")
@@ -49,9 +52,7 @@ public class Post {
         this.body = body;
     }
 
-    public Post() {
-
-    }
+    public Post() { }
 
     public void setUser(User user){
         this.user = user;
@@ -60,8 +61,6 @@ public class Post {
     public User getUser() {
         return user;
     }
-
-
 
     public Long getId() {
         return id;
@@ -87,6 +86,14 @@ public class Post {
         this.body = body;
     }
 
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
     public Date getCreateDate() {
         return createDate;
     }
@@ -105,7 +112,7 @@ public class Post {
 
     @Override
     public String toString(){
-        return this.id + " " + this.title + " " + this.body;
+        return this.id + " " + this.title + " " + this.body + " " + this.fileName;
     }
 
 
